@@ -5,24 +5,25 @@ let proto = grpc.load(PROTO_PATH).wkrpt401;
 
 function getBestPersonality(call, callback) {
   let userData = call.request;
-  var maxPersonalityValue = -1;
+  let name = userData.name;
+  let level = userData.level;
+
   var maxPersonalityName = "";
-  for (var key in userData.personality) {
-    if (userData.hasOwnProperty(key)) {
-      let personalityValue = userData.personality[key];
-      if (personalityValue > maxPersonalityValue) {
-        maxPersonalityValue = personalityValue;
-        maxPersonalityName = key;
-      }
+  var maxPersonalityValue = -1;
+  for (var i in userData.personality) {
+    let personalityName = userData.personality[i].name;
+    let personalityValue = userData.personality[i].amount;
+    if (personalityValue > maxPersonalityValue) {
+      maxPersonalityName = personalityName;
+      maxPersonalityValue = personalityValue;
     }
   }
 
-  let name = userData.name;
-  let level = userData.level;
   let response = "The best personality attribute for " + name
-                    + " (Lv. " + level + ") is " +
-                    + maxPersonalityName;
-  print("getBestPersonality called with response '" + response + "''");
+                    + " (Lv. " + level + ") is "
+                    + maxPersonalityName + " @ "
+                    + maxPersonalityValue;
+  console.log("getBestPersonality called with response '" + response + "'");
   callback(null, {response: response});
 }
 
