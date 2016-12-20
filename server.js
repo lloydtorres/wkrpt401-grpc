@@ -29,7 +29,10 @@ function getBestPersonality(call, callback) {
 function main() {
   var server = new grpc.Server();
   server.addProtoService(proto.UserManager.service, {getBestPersonality: getBestPersonality});
-  let url = "localhost:" + (process.env.PORT || 8080);
+  let url = "localhost:8080";
+  if (process.env.PORT) {
+    url = "bmo-wkrpt401-grpc.herokuapp.com:" + process.env.PORT
+  }
   server.bind(url, grpc.ServerCredentials.createInsecure());
   server.start();
   console.log("WKRPT401 gRPC server starting @ " + url);
