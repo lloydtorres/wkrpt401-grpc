@@ -14,7 +14,7 @@ let userEmilia = {
 }
 
 function main() {
-  let client = new proto.UserManager("localhost:8080",
+  let client = new proto.UserManager("localhost:50051",
                                       grpc.credentials.createInsecure());
 
   client.getBestPersonality(userEmilia, function(err, response) {
