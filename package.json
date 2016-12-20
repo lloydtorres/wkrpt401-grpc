@@ -1,0 +1,21 @@
+{
+  "name": "wkrpt401-grpc",
+  "version": "0.0.1",
+  "repository": "https://github.com/lloydtorres/wkrpt401-grpc.git",
+  "license": "MIT",
+  "main": "server.js",
+  "engines": {
+    "node": "7.2.1"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "monitor": "nodemon server.js"
+  },
+  "dependencies": {
+    "async": "^1.5.2",
+    "google-protobuf": "^3.0.0",
+    "grpc": "^1.0.0",
+    "lodash": "^4.6.1",
+    "minimist": "^1.2.0"
+  }
+}
