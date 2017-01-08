@@ -3,6 +3,8 @@ let PROTO_PATH = __dirname + "/wkrpt401.proto"
 let grpc = require('grpc');
 let proto = grpc.load(PROTO_PATH).wkrpt401;
 
+var requestCount = 0
+
 function getBestPersonality(call, callback) {
   let userData = call.request;
   let name = userData.name;
@@ -23,7 +25,8 @@ function getBestPersonality(call, callback) {
                     + " (Lv. " + level + ") is "
                     + maxPersonalityName + " @ "
                     + maxPersonalityValue;
-  console.log("getBestPersonality called with response '" + response + "'");
+  requestCount++
+  console.log("getBestPersonality called with response '" + response + "'" + " (request #" + requestCount + ")");
   callback(null, {response: response});
 }
 
