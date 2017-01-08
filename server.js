@@ -1,11 +1,13 @@
 let PROTO_PATH = __dirname + "/wkrpt401.proto"
 
+let sizeof = require('object-sizeof')
 let grpc = require('grpc');
 let proto = grpc.load(PROTO_PATH).wkrpt401;
 
 var requestCount = 0
 
 function getBestPersonality(call, callback) {
+  console.log("Size of call = " + sizeof(call))
   let userData = call.request;
   let name = userData.name;
   let level = userData.level;
